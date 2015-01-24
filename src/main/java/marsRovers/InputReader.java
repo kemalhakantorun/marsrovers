@@ -37,7 +37,7 @@ public class InputReader {
 
                 logger.entry("Line " + lineCount);
                 if (lineCount == 0) {
-
+                    // first line is for grid's X and Y limits
                     int x = Integer.parseInt(thisLine.split(" ")[0]);
                     int y = Integer.parseInt(thisLine.split(" ")[1]);
                     logger.trace("Line 1 - X = " + x + " .. Y= " + y);
@@ -51,11 +51,13 @@ public class InputReader {
                         int y = Integer.parseInt(thisLine.split(" ")[1]);
                         char direction = thisLine.split(" ")[2].charAt(0);
                         Rover newRover = new Rover(x, y, direction);
+                        // create a new rover in x y and read direction head
                         rovers.add(newRover);
                         logger.trace("New Rover added.");
                     } else {
                         for (int i = 0; i < thisLine.length(); i++) {
                             rovers.get(roverCount).addCommand(thisLine.charAt(i));
+                            //read rover commands and put them in rover
                         }
                         roverCount++;
                     }

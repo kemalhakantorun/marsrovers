@@ -62,6 +62,9 @@ public class Plateau {
     }
 
     public void updatePlateau() {
+
+        // first we delete whole matrix and just please
+        // current places of rovers in matrix
         resetPlateau();
         int roverCount = 1;
         for (Rover rover : getRovers()) {
@@ -71,7 +74,7 @@ public class Plateau {
     }
 
     public Boolean isEmpty(int x, int y) {
-
+        // a method for checking if the given X and Y point empty or not
         if (x >= this.maxX || y >= this.maxY || x < 0 || y < 0) {
             return false;
         } else {
@@ -84,6 +87,7 @@ public class Plateau {
     }
 
     public void showPlateau() {
+        // a kind of small presentation of plateau with * and rover's number
         updatePlateau();
         System.out.println();
         for ( int y =0 ; y < maxY ; y++)

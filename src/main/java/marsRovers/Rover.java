@@ -11,9 +11,9 @@ import static marsRovers.Rover.Direction.East;
 public class Rover {
     private static final Logger logger = LogManager.getLogger(Rover.class);
     private Direction head;
-    private int currentX;
-    private int currentY;
-    private ArrayList<Character> roverCommands;
+    private int currentX;//keeps our Rover's X coordinate
+    private int currentY;//keeps our Rover's Y coordinate
+    private ArrayList<Character> roverCommands; // our rover's command list
 
     private Rover() {
 
@@ -66,19 +66,25 @@ public class Rover {
 
     public void process() {
         for (int i = 0; i < roverCommands.size(); i++) {
+            // taking all our commands step by step and proccessing them
+
             char cmd = roverCommands.get(i);
             logger.trace("Rover's Position was : " + getPosition());
             logger.trace("Rover Command    : " + cmd);
             if (cmd == 'M' || cmd == 'm') {
+                // if command is M which means move to head direction
                 this.move();
             } else {
+                // else change head side
                 int newHeadValue = head.getValue();
                 if (cmd == 'L' || cmd == 'l') {
+                    //left means -1 for head state
                     newHeadValue -= 1;
                     if (newHeadValue < 0) {
                         newHeadValue = 3;
                     }
                 } else if (cmd == 'R' || cmd == 'r') {
+                    //right means +1 for head state
                     newHeadValue += 1;
                     if (newHeadValue > 3) {
                         newHeadValue = 0;
@@ -95,7 +101,7 @@ public class Rover {
         Plateau myPlague = Plateau.getInstance();
         logger.trace("*** Current was X : "+currentX + " , Current was Y :"+ currentY);
         switch (getHead()) {
-
+                // changing coordinates according to head
 
             case North:
                 if (myPlague.isEmpty(currentX, currentY + 1)) {
